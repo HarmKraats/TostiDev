@@ -39,20 +39,16 @@ if (isset($_POST['submit']) && !empty($_POST['username'])) {
 
 <body>
     <link rel='stylesheet' type='text/css' href='style.css'>
-    <h1>Welkom en Log hier in voor DE GAME</h1>
+    <h1>Inlog systeem</h1>
     <form name="form1" method="post" action="login.php">
+    <!-- Username -->
         <label for="username">Username:<label><br>
-                <input type="text" id="username" name="username" value=""><br>
-                <label for="password">Password:<label><br>
-                        <input type="password" id="password" name="password" value=""><br>
-
-                        <?php
-                        
-
-                        ?>
-
-                        <input type="submit" name="submit" value="Verzenden">
-
+        <input type="text" id="username" name="username" value=""><br>
+    <!-- Password -->
+        <label for="password">Password:<label><br>
+        <input type="password" id="password" name="password" value=""><br>
+    <!-- Submit -->
+        <input type="submit" name="submit" value="Verzenden">
     </form>
 </body>
 </body>
