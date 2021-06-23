@@ -1,0 +1,98 @@
+*{
+    font-family: sans-serif;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none !important;
+}
+/*-----------------nav-bar-----------------*/
+.navbar-brand img{
+    height: 100px;
+    object-fit: fill;
+    width: 185px;
+}
+.wrapp{
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("../img/wrapp.jpg")center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100vh;
+    position: relative; 
+}
+.main_nav{
+    left: 1vh;
+    position: absolute;
+    top: 0;
+}
+
+.form_data{
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    padding: 3rem;
+    width: 100%;
+}
+/*-----------------form-control-----------------*/
+.form-control{
+    background-color: #333 !important;
+    border: none !important; 
+    color: white;
+    outline: none !important;
+}
+.form-control:focus{
+    background-color: #333 !important;
+    border-bottom: 3px solid #e87033 !important;
+    border-color: none !important;
+    box-shadow: none !important;
+    color: white;
+    outline: 10 !important;
+    transition: all 0.3s;
+}
+
+.label-color{
+    color: #8c8c8c !important;
+}
+.theme-btn{
+    background: red !important;
+    color: #fff !important;
+    filter: drop-shadow(0,1rem 0.1rem 1rem rgba(0,0,0,0,7));
+    font-size: 1.2rem;
+    padding: 0.25rem !important;
+    width: 100%;
+}
+#content{
+    border: 1px solid #cbcbcb;
+    margin: 20px auto;
+    width: 50%;
+}
+#form{
+    margin: 20 px auto;
+    width: 50%;
+}
+form div{
+    margin-top: 5px;
+}
+#img_div{
+    border: 1px solid #cbcbcb;
+    margin: 150x auto;
+    padding: 5px;
+    width: 80%;
+}
+#img_div::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+img{
+    float: left;
+    height: 140px;
+    margin: 5px;
+    width: 300px;
+}
+/*-----------------responsiv-----------------*/
+@media screen and (max-width: 848px) {
+    .img-fluid {
+        display: none;
+    }
+}

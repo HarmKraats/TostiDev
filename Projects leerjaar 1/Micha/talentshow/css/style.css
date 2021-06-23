@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(123, 173, 175);
+    font-family: 'Josefin Sans', sans-serif;
+}
+/*-------------------header-------------*/
+.navbar {
+    background-color: rgb(104, 104, 233);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.main-nav {
+    display: none;
+    list-style-type: none;
+}
+
+.nav-links,
+.logo {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.main-nav li {
+    margin: 15px auto;
+    text-align: center;
+}
+
+.logo {
+    display: inline-block;
+    font-size: 22px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.navbar-toggle {
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.active {
+    display: block;
+}
+/*-------------------Inhoud-------------*/
+main {
+    margin: 0 auto;
+    padding: 30px 20px;
+    width: 90vw;
+  }
+article {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  article:last-child {
+    margin-bottom: 0;
+  }
+  article h3 {
+    margin: 10px 0 25px 0;
+  }
+  article p {
+    line-height: 24px;
+    margin-top: 16px;
+  }
+  
+/*-------------------responsive-------------*/
+@media screen and (min-width: 848px) {
+    .navbar {
+        align-items: center;
+        display: flex;
+        height: 70px;
+        justify-content: space-between;
+        padding-bottom: 0;
+    }
+
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-right: 30px;
+    }
+
+    .main-nav li {
+        margin: 0;
+    }
+
+    .nav-links {
+        margin-left: 40px;
+    }
+
+    .logo {
+        margin-top: 0;
+    }
+
+    .navbar-toggle {
+        display: none;
+    }
+
+    .logo:hover,
+    .nav-links:hover {
+        color: rgba(255, 255, 255, 1);
+    }
+
+}
+table{
+    border-spacing: 0;
+  }
+  .main{
+    font-weight: 500;
+  }
+  th{
+    border: 1px solid #000;
+    font-weight: 300;
+    margin: 0;
+    padding: 0,5rem;
+  }
+  .titleimage {
+    height: auto;
+    max-width: 100%;
+    padding: 5px;
+    width: 50%;
+}
