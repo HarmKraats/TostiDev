@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flickr</title>
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        #album {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #album li {
+            list-style: none;
+            margin: 5px;
+            width: 260px;
+            height: 270px;
+            text-align: center;
+        }
+
+        #album img {
+            border: solid 1px black;
+            box-shadow: 3px 3px 3px rgba(51, 51, 51, 1);
+            opacity: .3;
+            filter: grayscale(100%);
+            transition: all .5s linear;
+        }
+
+        #album img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.2);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+        <h1>Flickr <span>(JSONP)</span></h1>
+
+        <form name="flickrForm" id="flickrForm" method="post" action="http://www.themoeviedb.com/">
+            <label for="tags">tags:</label>
+            <div class="input">
+                <input type="text" name="tags" id="tags" value="planes">
+            </div>
+            <button class="button" type="submit" name="submit" id="submit">Zoek foto's</button>
+        </form>
+        <div>
+            <ul id="album">
+
+            </ul>
+        </div>
+
+    </main>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/les.js"></script>
+
+    <script>
+        $(function () {
+            $("#flickrForm").submit(function (e) {
+                // ----- Input uit het input veld halen en het linkje maken
+                var searchText = document.getElementById("tags").value;
+                e.preventDefault();
+                $('#album li').remove();
+                var newLink =
+                    "http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=?&tags=" +
+                    searchText;
+
+
+                //data uit het json bestand halen
+                $.getJSON(newLink, function (a) {
+                    $("#album li").remove();
+
+                    if(a.items.lenght == 0){
+                        alert("Geen items gevonden");
+                    }
+                    
+                    //De data op het scherm printen
+                    $.each(a.items, function () {
+                        
+                        $('#album').append('<li><img src="'+this.media.m+'" title="'+this.title+'"></li>')
+                    });
+
+                    // Variable a is hier de data uit het json bestand. dan gaan we kijken of er niks in staat.
+                    // je kunt uit het json bestand lezen dat alles in items staat. dus dan pak je a.itams
+                    // en dan voor elke a.items voeg je het toe aan #album dus het plaatje en de title.
+        
+                });
+
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
