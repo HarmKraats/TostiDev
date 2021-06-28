@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jQuery iTunes</title>
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .preloader-success {
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #thumbs {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #thumbs img {
+            margin: 0 10px 10px 0;
+            border: solid 1px lightGrey;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        #detail td {
+            vertical-align: top;
+        }
+
+        #detail table img:first-of-type {
+            border: solid 1px lightGrey;
+            padding: 3px;
+            max-width: 150px;
+        }
+
+        img[src$='spacer.gif'] {
+            border-style: none !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+        <h1>iTunes <span></span></h1>
+        <label for="url">iTunes Feed: </label>
+        <div class="select">
+            <select name="url" id="url">
+                <option value="https://itunes.apple.com/nl/rss/topalbums/limit=20/xml">Top 20 NL albums</option>
+                <option value="https://itunes.apple.com/nl/rss/topsongs/limit=20/xml">Top 20 NL songs</option>
+                <option value="https://itunes.apple.com/nl/rss/topfreemacapps/limit=20/xml">Top 20 NL gratis Mac apps
+                </option>
+                <option value="https://itunes.apple.com/nl/rss/topmovies/limit=20/xml">Top 20 NL films</option>
+
+            </select>
+            <i class="fa fa-angle-down fa-2"></i>
+        </div>
+        <div class="preloader-success">Even geduld...</div>
+        <h2>iTunes RRS feed</h2>
+        <section id="thumbs"></section>
+        <section id="detail"></section>
+
+    </main>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/les.js"></script>
+    <script>
+        $('#thumbs, #detail').hide();
+
+        $('#url').change(function (e) {
+            $('.preloader-success').show();
+            $('#thumbs, #detail').empty();
+            var url = $(this).val();
+            $.get('proxy.php?url=' + url, function (data) {
+                $('#thumbs, #detail').show();
+                $('h2').text($(data).find('title:first').text());
+                var entry = $(data).find('entry');
+                console.log(entry);
+                $.each(entry, function (index, value) {
+                    // Eerste selector (im\\:image:eq(1)) voor FF en IE, tweede (image:eq(1)) voor Chrome en Safari
+                    var img = $(this).find('im\\:image:eq(1), image:eq(1)').text();
+
+                    var title = $(this).find('title').text();
+
+                    var content = $(this).find('content').text();
+
+                    $('#thumbs').append('<img src ="' + img + '"data-id= "' + index + '">');
+                    $('#detail').append('<div id="entry' + index + '"><h3>' + title + '</h3>' +
+                        content + '</div>');
+                });
+                $('#detail div').not(':first').hide();
+            }, 'xml').done(function () {
+                $('.preloader-success').hide();
+            }).fail(function (err) {
+                console.log('error', err);
+            });
+        }).change();
+
+        $('#thumbs').on('click', 'img', function () {
+            var id = $(this).data('id');
+            $('#detail div:visible').hide();
+            $('#entry' + id).show();
+        });
+    </script>
+
+</body>
+
+</html>
